@@ -1,0 +1,6 @@
+###配置引用
+spring:
+  profiles:
+    include:
+      - common
+

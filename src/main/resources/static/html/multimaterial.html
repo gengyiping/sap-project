@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>批量物料移动界面-7-2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="referrer" content="no-referrer"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1"/>
+    <!-- 开发环境  Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css" charset="UTF-8">
+    <!-- 生产环境 Bootstrap CSS -->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <!--自定义样式-->
+    <link rel="stylesheet" href="../css/common.css" charset="UTF-8">
+
+</head>
+<body>
+<div class="container-fluid" id="app">
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-left">
+            7-1转移界面
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-right">
+            电量、无线、蓝牙、打印机状态
+        </div>
+    </div>
+    <div class="row" style="height: 30px;">
+        <div class="col-md-offset-12"></div>
+    </div>
+    <div class="row row-padding-top-ten">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center row-padding-right-unset"
+             style="transform: translateY(20%);">
+            位置条码:
+        </div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 row-padding-unset">
+            <input type="text" v-model="originalPosition" class="form-control" placeholder="扫码带入">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button type="button" class="btn btn-success" @click="originalClick">扫码</button>
+        </div>
+    </div>
+    <div class="row row-padding-top-ten" >
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center row-padding-right-unset"
+             style="transform: translateY(20%);">
+            目的地条码:
+        </div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 row-padding-unset">
+            <input type="text" v-model="targetPosition" class="form-control" placeholder="扫码带入">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button type="button" class="btn btn-success" @click="targetClick">扫码</button>
+        </div>
+    </div>
+    <div class="row row-padding-top-ten">
+        <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+            <span class="col-xs-12" v-html="detailContent"
+                  style="border: solid 1px black;height: 150px"></span>
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-primary"
+                            style="width: 82px" @click="clearContent">
+                        清空
+                    </button>
+                </div>
+            </div>
+            <div class="row row-padding-top-forth" >
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-primary">
+                        详细信息
+                    </button>
+                </div>
+            </div>
+            <div class="row row-padding-top-forth">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-primary">异常呼叫</button>
+                </div>
+            </div>
+            <div class="row row-padding-top-forth" >
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-primary">确认转移</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--Jquery-->
+<script src="../js/lib/jquery.min.js" type="text/javascript"></script>
+<!-- 开发环境 Bootstrap JS -->
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
+<!-- 生产环境 Bootstrap JS -->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="../js/lib/vue.min.js" type="text/javascript"></script>
+<!-- 生产环境版本，优化了尺寸和速度 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+
+<script src="../js/material.js" type="text/javascript"></script>
+</html>

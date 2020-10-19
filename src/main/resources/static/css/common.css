@@ -1,0 +1,19 @@
+.row-padding-top-ten{
+    padding-top: 10px
+}
+
+.row-padding-top-forth{
+    padding-top: 4px
+}
+
+@media all and (max-width: 450px) {
+    .row-padding-left-unset{
+        padding-left: unset;
+    }
+    .row-padding-right-unset{
+        padding-right: unset;
+    }
+    .row-padding-unset{
+        padding: unset;
+    }
+}

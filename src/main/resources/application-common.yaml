@@ -1,0 +1,31 @@
+spring:
+  thymeleaf:
+    cache: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+---
+# dev
+spring:
+  profiles: dev
+  devtools:
+    restart:
+      #设置重启的目录
+      additional-paths: src/main/java
+      #热部署生效
+      enabled: true
+      exclude: test/**
+
+---
+# test
+spring:
+  profiles: test
+---
+# pre
+spring:
+  profiles: pre
+---
+# pro
+spring:
+  profiles: prod
