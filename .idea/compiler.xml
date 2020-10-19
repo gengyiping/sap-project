@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for sap_project" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/tuanche/maven_repository/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar" />
+        </processorPath>
+        <module name="sap_project" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding UTF8" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sap_project" options="-parameters -extdirs src\main\webapp\WEB-INF\lib" />
+    </option>
+  </component>
+</project>
