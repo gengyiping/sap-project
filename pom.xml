@@ -16,7 +16,7 @@
     <version>1.0-SNAPSHOT</version>
 
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>sap_project</name>
     <description>Sap project</description>
 
@@ -32,6 +32,7 @@
         <spring.boot.version>2.2.4.RELEASE</spring.boot.version>
         <spring.boot.maven.version>2.1.7.RELEASE</spring.boot.maven.version>
         <spring.boot.starter.test>2.2.4.RELEASE</spring.boot.starter.test>
+        <servlet.version>3.1.0</servlet.version>
 
         <lombok.version>1.18.10</lombok.version>
         <hutool.version>4.5.7</hutool.version>
@@ -61,7 +62,14 @@
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
-       <!--  热部署依赖-->
+        <!--lombok 工具包-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <!--  热部署依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -70,33 +78,53 @@
         </dependency>
 
         <!-- 打war包时加入此项， 告诉spring-boot tomcat相关jar包用外部的，不要打进去 -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.tomcat.embed</groupId>-->
+        <!--            <artifactId>tomcat-embed-jasper</artifactId>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
+<!--        serlet 依赖-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <build>
         <finalName>sap_project</finalName>
+        <resources>
+            <!-- 打包webapp下的资源到META-INF/resources目录下
+               注：此操作后resources资源就不会再进行打包-->
+            <resource>
+                <directory>src/main/webapp</directory>
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+            <!-- 打包resources下的资源 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
+            <!-- spring boot maven 打包插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <!-- spring热部署 -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>1.2.8.RELEASE</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
+                    <!-- 指定程序的入口 -->
+                    <mainClass>com.sap.SapApplication</mainClass>
                     <includeSystemScope>true</includeSystemScope>
                     <fork>true</fork>
                 </configuration>
@@ -118,7 +146,7 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <compilerArguments>
-                        <extdirs>src\main\webapp\WEB-INF\lib</extdirs>
+                        <extdirs>${project.basedir}/src/main/resources/lib</extdirs>
                     </compilerArguments>
                     <annotationProcessorPaths>
                         <path>
@@ -142,15 +170,15 @@
         </plugins>
     </build>
 
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-dependencies</artifactId>-->
-<!--                <version>${spring.boot.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
+    <!--    <dependencyManagement>-->
+    <!--        <dependencies>-->
+    <!--            <dependency>-->
+    <!--                <groupId>org.springframework.boot</groupId>-->
+    <!--                <artifactId>spring-boot-dependencies</artifactId>-->
+    <!--                <version>${spring.boot.version}</version>-->
+    <!--                <type>pom</type>-->
+    <!--                <scope>import</scope>-->
+    <!--            </dependency>-->
+    <!--        </dependencies>-->
+    <!--    </dependencyManagement>-->
 </project>
